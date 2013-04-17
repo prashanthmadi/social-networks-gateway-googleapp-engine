@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Facebook Login</title>
+<script type="text/javascript" src="/jscript/facebook.js"></script>
+<script type="text/javascript" src="/jscript/googleplus.js"></script>
+</head>
+<body>
+	<div id="fb-root"></div>
+	<input type="button" value="Facebook" onClick="fbLogin()"></input>
+	<!-- Add where you want your sign-in button to render -->
+	<div id="signinButton">
+		<span class="g-signin"
+			data-scope="https://www.googleapis.com/auth/plus.login"
+			data-clientid="1084418189504-mdcaeg0e0ab95mugrnm62cbqra734m8j.apps.googleusercontent.com"
+			data-redirecturi="postmessage" data-accesstype="offline"
+			data-cookiepolicy="none" data-callback="signInCallback">
+		</span>
+	</div>
+	<div id="result"></div>
+
+
+
+</body>
+</html>
