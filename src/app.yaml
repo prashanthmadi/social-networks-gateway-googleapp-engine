@@ -1,0 +1,20 @@
+application: firestormswillhit
+version: 2
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /jscript
+  static_dir: jscript
+
+- url: /statichtml
+  static_dir: statichtml
+
+- url: /.*
+  script: home.app
+
+libraries:
+- name: jinja2
+  version: latest
