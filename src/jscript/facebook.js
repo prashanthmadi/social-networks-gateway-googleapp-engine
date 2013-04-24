@@ -1,10 +1,5 @@
 var facebookAppId = '418417188254997';
 var facebookChannelUrl = 'http://firestormswillhit.appspot.com/';
-var facebookDataStore = 'http://firestormswillhit.appspot.com/facebookdatastore.db';
-
-// document
-// .write('<script type="text/javascript" src="jSRequest.js"
-// ></script>');
 
 window.fbAsyncInit = function() {
 	// init the FB JS SDK
@@ -36,15 +31,34 @@ function fbLogin() {
 			var params = {};
 			params['authtoken'] = response.authResponse.accessToken;
 			alert(params['authtoken']);
-			FB.api('/me', function(response) {
-				params['name'] = response.name;
-				params['email'] = response.email;
-		//		post_to_url(facebookDataStore, params, "post");
-			});
+			fbLongLivedToken(params['authtoken']);
 		} else {
 			console.log('User cancelled login or did not fully authorize.');
 		}
 	}, {
 		scope : 'email,user_likes'
 	});
+}
+
+function ajaxformpost(shrtlivedtoken) {
+	var xmlhttp;
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp = new XMLHttpRequest();
+	} else {// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			alert(xmlhttp.responseText);
+		}
+	}
+	xmlhttp.open("POST", "/rpc", true);
+	xmlhttp.setRequestHeader("Content-type",
+			"application/x-www-form-urlencoded");
+	alert(shrtlivedtoken);
+	xmlhttp.send("shrtlivedtoken=" + shrtlivedtoken);
+}
+
+function fbLongLivedToken(shrtlivedtoken) {
+	ajaxformpost(shrtlivedtoken);
 }

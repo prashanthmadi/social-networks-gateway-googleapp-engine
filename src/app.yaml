@@ -12,6 +12,9 @@ handlers:
 - url: /statichtml
   static_dir: statichtml
 
+- url: /rpc
+  script: facebookaccesstoken.app
+
 - url: /.*
   script: home.app
 
