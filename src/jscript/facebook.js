@@ -1,5 +1,5 @@
 var facebookAppId = '418417188254997';
-var facebookChannelUrl = 'http://firestormswillhit.appspot.com/';
+var facebookChannelUrl = 'http://socioapi.appspot.com/';
 
 window.fbAsyncInit = function() {
 	// init the FB JS SDK
@@ -36,7 +36,7 @@ function fbLogin() {
 			console.log('User cancelled login or did not fully authorize.');
 		}
 	}, {
-		scope : 'email,user_likes'
+		scope : 'email,user_likes,read_friendlists'
 	});
 }
 

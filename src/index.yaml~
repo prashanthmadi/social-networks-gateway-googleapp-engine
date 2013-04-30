@@ -1,0 +1,6 @@
+indexes:
+
+- kind: feedDataStore
+  properties:
+  - name: feed_updated_time
+    direction: asc

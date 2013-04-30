@@ -1,5 +1,5 @@
-application: firestormswillhit
-version: 2
+application: socioapi
+version: 4
 runtime: python27
 api_version: 1
 threadsafe: true
