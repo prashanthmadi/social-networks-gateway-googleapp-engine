@@ -1,5 +1,5 @@
 application: socioapi
-version: 4
+version: 5
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -9,14 +9,17 @@ handlers:
 - url: /jscript
   static_dir: jscript
 
-- url: /statichtml
-  static_dir: statichtml
+- url: /loginaccesstoken
+  script: loginaccesstoken.app
 
-- url: /rpc
-  script: facebookaccesstoken.app
+- url: /search
+  script: search.app
 
-- url: /.*
-  script: home.app
+- url: /searchresult
+  script: search.app
+
+- url: /*
+  script: login.app
 
 libraries:
 - name: jinja2

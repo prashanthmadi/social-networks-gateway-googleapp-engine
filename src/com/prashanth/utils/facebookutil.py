@@ -1,6 +1,6 @@
 from com.prashanth.constants import SocialConstants
 from com.prashanth.dao.facebookdao import storeTotalFacebookFeed, storeUserData
-from com.prashanth.utils.getUrlData import makePostRequest, makeGetRequest
+from com.prashanth.utils.getData import makePostRequest, makeGetRequest
 from urlparse import parse_qsl
 import json
 import logging

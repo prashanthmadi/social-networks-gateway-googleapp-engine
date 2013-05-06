@@ -1,4 +1,4 @@
-from com.prashanth.utils.getUrlData import extractDataFromUrl
+from com.prashanth.utils.getData import extractDataFromUrl
 
 url = ""
 extractDataFromUrl(url)

@@ -1,6 +1,7 @@
-from com.prashanth.db.Facebookdb import feedDataStore, FBUserData
+from com.prashanth.db.Facebookdb import feedDataStore, FBUserData, \
+    feedProcessedStore, dataIndexStore
+import json
 import logging
-
 
 def storeUserData(currentUserData):
     try:
@@ -43,5 +44,28 @@ def storeCurrentFacebookFeed(currentFBFeed):
 def storeTotalFacebookFeed(totalCurrentProfileData):
     for currentFBFeed in totalCurrentProfileData['data']:
         storeCurrentFacebookFeed(currentFBFeed)
+
+def storeProcessedFeed(processedData):
+    try:
+        processedStoreHandle = feedProcessedStore()
+        processedStoreHandle.feed_id = processedData['id']
+        processedStoreHandle.feed_processed_message = json.dumps(processedData['message'])
+        processedStoreHandle.feed_distance = processedData['distance']
+        processedStoreHandle.put()
+    except Exception, e:
+        logging.error(e)
+        logging.error(processedData)
+        
+def storeIndexData(indexdata):
+    try:
+        dataIndexHandle = dataIndexStore()
+        dataIndexHandle.indexWord = indexdata['word']
+        dataIndexHandle.total_feed_list = indexdata['feedlist']
+        dataIndexHandle.put()
+    except Exception, e:
+        logging.error(e)
+        logging.error(indexdata)
     
-    
+        
+def gettotalFacebookFeed():
+    return feedDataStore.all()

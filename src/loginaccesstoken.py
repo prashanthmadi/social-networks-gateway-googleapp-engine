@@ -12,8 +12,8 @@ class FacebookGraphApiHandler(webapp2.RequestHandler):
         resultdata = facebookMain(shrtlivedtoken)
         if resultdata is None:
             self.response.out.write("error while extracting token")
-        else:    
+        else:
             self.response.out.write(resultdata)
 
-app = webapp2.WSGIApplication([('/rpc', FacebookGraphApiHandler)],
+app = webapp2.WSGIApplication([('/loginaccesstoken', FacebookGraphApiHandler)],
                               debug=True)

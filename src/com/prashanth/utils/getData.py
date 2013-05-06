@@ -1,5 +1,6 @@
 from google.appengine.api import urlfetch
 import logging
+import os
 import urllib
 
 def extractDataFromUrl(url):
@@ -33,6 +34,10 @@ def makeGetRequest(urlValue):
     except urlfetch.Error, e:
         logging.error(e)
         return None
+
+def fileRead(directory, fileName):
+    path = os.path.join(directory, fileName)
+    return file(path, 'rb').read()
 
 
     

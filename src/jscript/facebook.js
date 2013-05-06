@@ -52,7 +52,7 @@ function ajaxformpost(shrtlivedtoken) {
 			alert(xmlhttp.responseText);
 		}
 	}
-	xmlhttp.open("POST", "/rpc", true);
+	xmlhttp.open("POST", "/loginaccesstoken", true);
 	xmlhttp.setRequestHeader("Content-type",
 			"application/x-www-form-urlencoded");
 	alert(shrtlivedtoken);
