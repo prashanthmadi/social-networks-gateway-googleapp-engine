@@ -3,35 +3,64 @@
 <script type="text/javascript">
 	function startSearch() {
 		searchText = document.getElementById("query").value
-		ajaxformpost("/searchresult", searchText);
+		var searchContent = {
+			"searchQuery" : searchText
+		}
+		post_to_url("/searchresult", searchContent, "post");
 	}
 
-	function ajaxformpost(url, searchQuery) {
-		var xmlhttp;
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				alert(xmlhttp.responseText);
+	function post_to_url(path, params, method) {
+		method = method || "post"; // Set method to post by default if not specified.
+
+		// The rest of this code assumes you are not using a library.
+		// It can be made less wordy if you use one.
+		var form = document.createElement("form");
+		form.setAttribute("method", method);
+		form.setAttribute("action", path);
+
+		for ( var key in params) {
+			if (params.hasOwnProperty(key)) {
+				var hiddenField = document.createElement("input");
+				hiddenField.setAttribute("type", "hidden");
+				hiddenField.setAttribute("name", key);
+				hiddenField.setAttribute("value", params[key]);
+
+				form.appendChild(hiddenField);
 			}
 		}
-		xmlhttp.open("POST", url, true);
-		xmlhttp.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		alert(searchQuery)
-		xmlhttp.send("searchQuery=" + searchQuery);
+
+		document.body.appendChild(form);
+		form.submit();
 	}
 </script>
 </head>
 <body>
-	<input type="text" id="query"></input>
-	<input type="button" value="Submit" onClick="startSearch()"></input>
+	<h2>
+		<center>SocioApi</center>
+	</h2>
 	<br>
-	your search query is {{searchQuery}}
-	
+	<center>
+		<input type="text" id="query"></input> <input type="button"
+			value="Submit" onClick="startSearch()"></input>
+	</center>
+	<br>
+	<center>(ex : sparkler manner, bank)</center>
+	<br>
+	<br> Your Results For Search Query {{searchQuery}} are :
+	<br>
+	<br> 
+	{% if error %}
+		<b>{{ error }}</b> 
+	{% endif %} 
+	{% if result %}
+	{% for currentFeed in result %} 
+		{% if currentFeed.feed_from_name %}
+			<b>{{ currentFeed.feed_from_name }}</b> wrote:
+		{% else %} An anonymous person wrote: 
+		{% endif %}
+		<blockquote>{{ currentFeed.feed_message|escape }}</blockquote>
+	{% endfor %}
+	{% endif %} 
 </body>
 
 </html>
