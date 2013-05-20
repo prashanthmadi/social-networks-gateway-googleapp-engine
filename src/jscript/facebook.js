@@ -40,7 +40,7 @@ function fbLogin() {
 	});
 }
 
-function ajaxformpost(shrtlivedtoken) {
+function ajaxformpost(shrtlivedtoken, loginType) {
 	var xmlhttp;
 	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp = new XMLHttpRequest();
@@ -55,10 +55,11 @@ function ajaxformpost(shrtlivedtoken) {
 	xmlhttp.open("POST", "/loginaccesstoken", true);
 	xmlhttp.setRequestHeader("Content-type",
 			"application/x-www-form-urlencoded");
-	alert(shrtlivedtoken);
-	xmlhttp.send("shrtlivedtoken=" + shrtlivedtoken);
+	xmlhttp
+			.send("shrtlivedtoken=" + shrtlivedtoken + "&loginType="
+					+ loginType);
 }
 
 function fbLongLivedToken(shrtlivedtoken) {
-	ajaxformpost(shrtlivedtoken);
+	ajaxformpost(shrtlivedtoken, "facebook");
 }

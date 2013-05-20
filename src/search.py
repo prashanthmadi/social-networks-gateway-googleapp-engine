@@ -11,7 +11,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         template_values = {
-                "searchQuery" : "abc",
+                "searchQuery" : "",
                            }
         template = JINJA_ENVIRONMENT.get_template('search.html')
         self.response.write(template.render(template_values))

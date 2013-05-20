@@ -12,10 +12,16 @@
 	onLoad: onLinkedInLoad
 	authorize: true
 </script>
+<script type="text/javascript">
+	function twLogin() {
+		ajaxformpost("0", "twitter");
+	}
+</script>
 </head>
 <body>
 	<div id="fb-root"></div>
 	<input type="button" value="Facebook" onClick="fbLogin()"></input>
+	<input type="button" value="Twitter" onClick="twLogin()"></input>
 	<!-- Add where you want your sign-in button to render -->
 	<div id="signinButton">
 		<span class="g-signin"
